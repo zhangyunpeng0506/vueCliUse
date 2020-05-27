@@ -2,8 +2,9 @@
 import VueRouter from 'vue-router'
 import Vue from 'vue'
 
-import Home from '../components/Home'
-import About from '../components/About' 
+// import Home from '../components/Home'
+// import About from '../components/About'
+// import User from '../components/User'
 
 //1.通过Vue.use(插件)，安装插件。(只要是插件就必须有这一步)
 Vue.use(VueRouter)
@@ -16,11 +17,29 @@ const routes = [
   },
   {
     path: '/home',
-    component: Home
+    component: () => import("../components/Home"), //路由懒加载方式
+    children: [
+      {
+        path: '',
+        redirect: 'news'
+      },
+      {
+        path: 'news',
+        component: () => import("../components/HomeNews")
+      },
+      {
+        path: 'message',
+        component: () => import("../components/HomeMessage")
+      }
+    ]
   },
   {
     path: '/about',
-    component: About
+    component: () => import("../components/About")
+  },
+  {
+    path: '/user/:userId',
+    component: () => import("../components/User")
   }
 ]
 const router = new VueRouter({

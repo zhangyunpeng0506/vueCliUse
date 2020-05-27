@@ -4,9 +4,10 @@
     <!--vue-router中内置组件-->
     <router-link to="/home" tag="button" replace>首页</router-link>
     <router-link to="/about" tag="button" replace>关于</router-link>
+    <router-link :to="'/user/'+userId" tag="button" replace>用户</router-link>
     <br/>
-    <button @click="homeClick">首页</button>
-    <button @click="aboutClick">关于</button>
+    <!-- <button @click="homeClick">首页</button>
+    <button @click="aboutClick">关于</button> -->
     <!--渲染的位置-->
     <router-view></router-view>
   </div>
@@ -24,10 +25,20 @@
   replace //禁用浏览器的前进返回按钮 （原理：history模式_:默认使用的是history.pushState(),replace属性使用replaceState();hash模式_:）
  */
 
+/*路由懒加载
+  
+*/
+
 export default {
   name: 'App',
+  data(){
+    return {
+      userId:'zhangsan'
+    }
+  },
   methods:{
     homeClick(){
+      //this.$router是整个大的路由对象
       this.$router.push('/home')
       // this.$router.replace('/home')
     },
