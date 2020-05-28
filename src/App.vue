@@ -13,7 +13,13 @@
     <!-- <button @click="homeClick">首页</button>
     <button @click="aboutClick">关于</button> -->
     <!--渲染的位置-->
-    <router-view></router-view>
+    <!-- keep-alive 
+    include:
+    exclude:不包含的页面
+    -->
+    <keep-alive exclude="Profile,User">
+      <router-view/>
+    </keep-alive>
   </div>
 </template>
 
@@ -51,20 +57,42 @@ export default {
       this.$router.replace('/about')
     }
   },
-  created(){},
-  mounted(){},
-  updated(){}
+  beforeCreate(){
+    console.log('beforeCreate');
+  },
+  created(){
+    console.log('created');
+  },
+  beforeMount(){
+    console.log('beforeMount');
+  },
+  mounted(){
+    console.log('mounted');
+  },
+  beforeUpdate(){
+    console.log('beforeUpdate');
+  },
+  updated(){
+    console.log('update');
+  },
+  beforeDestroy(){
+    console.log('beforeDestory');
+  },
+  destroyed(){
+    console.log('destroyed');
+  }
 }
 </script>
 
-<style scoped>
-.router-link-active{
-  color: red;
-  background-color: blue;
-}
-.active{
-  color:chartreuse;
-  background-color: darkgray;
-}
+<style lang="less" scoped>
+  @import'./assets/css/base.less';  //@import后不能有空格
 
+  .router-link-active{
+    color: red;
+    background-color: blue;
+  }
+  .active{
+    color:chartreuse;
+    background-color: darkgray;
+  }
 </style>

@@ -17,7 +17,7 @@ const routes = [
   },
   {
     path: '/home',
-    component: () => import("../components/Home"), //路由懒加载方式
+    component: () => import("../view/home/Home"), //路由懒加载方式
     children: [
       {
         path: '',
@@ -25,11 +25,11 @@ const routes = [
       },
       {
         path: 'news',
-        component: () => import("../components/HomeNews"),
+        component: () => import("../view/home/HomeNews"),
       },
       {
         path: 'message',
-        component: () => import("../components/HomeMessage"),
+        component: () => import("../view/home/HomeMessage"),
       }
     ],
     meta:{
@@ -42,21 +42,21 @@ const routes = [
   },
   {
     path: '/about',
-    component: () => import("../components/About"),
+    component: () => import("../view/about/About"),
     meta:{
       title:'关于'
     }
   },
   {
     path: '/user/:userId',
-    component: () => import("../components/User"),
+    component: () => import("../view/user/User"),
     meta:{
       title:'用户'
     }
   },
   {
     path: '/profile',
-    component: () => import("../components/Profile"),
+    component: () => import("@view/profile/Profile"),
     meta:{
       title:'档案'
     }
