@@ -33,3 +33,7 @@ new Vue({
     history.go(-2)  //弹出两个
     history.go(2)   //压入两个
 */
+
+/*
+  
+*/

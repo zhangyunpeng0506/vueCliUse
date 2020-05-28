@@ -25,21 +25,41 @@ const routes = [
       },
       {
         path: 'news',
-        component: () => import("../components/HomeNews")
+        component: () => import("../components/HomeNews"),
       },
       {
         path: 'message',
-        component: () => import("../components/HomeMessage")
+        component: () => import("../components/HomeMessage"),
       }
-    ]
+    ],
+    meta:{
+      title:'首页'
+    },
+    beforeEnter(to,from,next){  //路由的钩子
+      // console.log(to);
+      next()
+    }
   },
   {
     path: '/about',
-    component: () => import("../components/About")
+    component: () => import("../components/About"),
+    meta:{
+      title:'关于'
+    }
   },
   {
     path: '/user/:userId',
-    component: () => import("../components/User")
+    component: () => import("../components/User"),
+    meta:{
+      title:'用户'
+    }
+  },
+  {
+    path: '/profile',
+    component: () => import("../components/Profile"),
+    meta:{
+      title:'档案'
+    }
   }
 ]
 const router = new VueRouter({
@@ -47,6 +67,23 @@ const router = new VueRouter({
   routes,
   mode: 'history', //可选择路由模式（hash、history）
   linkActiveClass: 'active', //路由选中时的class名称，默认为router-link-active
+})
+
+/* 路由的钩子函数
+ * 总体来数Vue提供了三大类钩子：1.全局钩子；2.某个路由的钩子；3.组件内钩子
+ * 两种函数 beforeEach(前置钩子)/afterEach(后置钩子)
+ */
+
+//前置钩子(守卫guard)
+router.beforeEach((to,from,next)=>{
+  //从from跳转到to
+  document.title=to.matched[0].meta.title;
+  next(); //可以传参数：路径、false
+})
+
+//后置钩子
+router.afterEach((to,from)=>{
+
 })
 
 //3.将router对象传入到实例中

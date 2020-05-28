@@ -5,6 +5,10 @@
     <router-link to="/home" tag="button" replace>首页</router-link>
     <router-link to="/about" tag="button" replace>关于</router-link>
     <router-link :to="'/user/'+userId" tag="button" replace>用户</router-link>
+    <router-link 
+      :to="{path:'/profile',
+            query:{name:'zyp',height:'177'}}"
+      tag="button">档案</router-link>
     <br/>
     <!-- <button @click="homeClick">首页</button>
     <button @click="aboutClick">关于</button> -->
@@ -46,7 +50,10 @@ export default {
       // this.$router.push('/about')
       this.$router.replace('/about')
     }
-  }
+  },
+  created(){},
+  mounted(){},
+  updated(){}
 }
 </script>
 
