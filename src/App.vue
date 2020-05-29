@@ -1,15 +1,14 @@
 <template>
   <div id="app">
-    <h1>我是APP</h1>
     <!--vue-router中内置组件-->
-    <router-link to="/home" tag="button" replace>首页</router-link>
+    <!-- <router-link to="/home" tag="button" replace>首页</router-link>
     <router-link to="/about" tag="button" replace>关于</router-link>
     <router-link :to="'/user/'+userId" tag="button" replace>用户</router-link>
     <router-link 
       :to="{path:'/profile',
             query:{name:'zyp',height:'177'}}"
       tag="button">档案</router-link>
-    <br/>
+    <br/> -->
     <!-- <button @click="homeClick">首页</button>
     <button @click="aboutClick">关于</button> -->
     <!--渲染的位置-->
@@ -17,9 +16,17 @@
     include:
     exclude:不包含的页面
     -->
-    <keep-alive exclude="Profile,User">
+    <tab-bar>
+      <tab-bar-item path="/home">首页</tab-bar-item>
+      <!-- <tab-bar-item path="/economics">财经</tab-bar-item>
+      <tab-bar-item path="/sports">体育</tab-bar-item> -->
+      <tab-bar-item path="/about">关于</tab-bar-item>
+      <tab-bar-item path="/user">我的</tab-bar-item>
+      <tab-bar-item path="/profile">档案</tab-bar-item>
+    </tab-bar>
+    <!-- <keep-alive exclude="Profile,User"> -->
       <router-view/>
-    </keep-alive>
+    <!-- </keep-alive> -->
   </div>
 </template>
 
@@ -35,9 +42,8 @@
   replace //禁用浏览器的前进返回按钮 （原理：history模式_:默认使用的是history.pushState(),replace属性使用replaceState();hash模式_:）
  */
 
-/*路由懒加载
-  
-*/
+import TabBar from '@/components/tabbar/TabBar'
+import TabBarItem from '@/components/tabbar/TabBarItem'
 
 export default {
   name: 'App',
@@ -45,6 +51,10 @@ export default {
     return {
       userId:'zhangsan'
     }
+  },
+  components:{
+    TabBar,
+    TabBarItem
   },
   methods:{
     homeClick(){

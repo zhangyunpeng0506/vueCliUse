@@ -48,7 +48,7 @@ const routes = [
     }
   },
   {
-    path: '/user/:userId',
+    path: '/user',
     component: () => import("../view/user/User"),
     meta:{
       title:'用户'
@@ -56,7 +56,7 @@ const routes = [
   },
   {
     path: '/profile',
-    component: () => import("@view/profile/Profile"),
+    component: () => import("@/view/profile/Profile"),
     meta:{
       title:'档案'
     }

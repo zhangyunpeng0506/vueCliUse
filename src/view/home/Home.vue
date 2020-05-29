@@ -34,7 +34,6 @@ export default {
     //当页面处于不活跃状态调用
   },
   beforeRouteLeave(to,from,next){ //组件内钩子
-    console.log(this.$route.path);
     this.path=this.$route.path;
     next();
   }
