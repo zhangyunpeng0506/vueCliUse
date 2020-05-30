@@ -2,6 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from '@/store'
+import axios from 'axios'
+import { request } from './network/request'
 
 Vue.config.productionTip = false
 
@@ -36,6 +38,55 @@ new Vue({
     history.go(2)   //压入两个
 */
 
-/*
-  
-*/
+//1.axios基本使用
+axios({
+  url: 'http://123.207.32.32:8000/home/multidata',
+  method: 'GET',
+}).then(res => console.log(res))
+
+axios({
+  url: 'http://123.207.32.32:8000/home/data?type=pop&page=3',
+}).then(res => console.log(res))
+
+axios({
+  url: 'http://123.207.32.32:8000/home/data',
+  //params专门针对get的请求参数拼接,post要用data
+  params: {
+    type: 'pop',
+    page: 1
+  }
+}).then(res => console.log(res))
+
+//2.axios发送并发请求
+axios.all([axios({
+  url: 'http://123.207.32.32:8000/category',
+  method: 'GET',
+}), axios({
+  url: 'http://123.207.32.32:8000/home/data',
+  params: {
+    type: 'pop',
+    page: 1
+  }
+})]).then(([res1, res2]) => { 
+  console.log(res1);
+  console.log(res2);
+})
+
+//3.全局使用axios配置
+axios.defaults.timeout = 5000;
+
+//4.创建axios实例
+const instance1 = axios.create({
+  baseURL: 'http://123.207.32.32:8000',
+  timeout: 3000
+})
+
+instance1({
+  url: '/category'
+}).then(res => console.log(res))
+
+//5.封装request模块
+request({
+  url: '/home/multidata'
+}).then(res => console.log(res))
+  .catch(err => console.log(err))
