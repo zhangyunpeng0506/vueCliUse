@@ -1,0 +1,10 @@
+//类型常量
+export const INCREMENT = 'increment'
+export const DECREMENT = 'decrement'
+export const INCREMENTCOUNT = 'incrementCount'
+export const ADDSTU = 'addStu'
+export const ADDSTU2 = 'addStu2'
+export const UPDATEINFO = 'updateInfo'
+export const AUPDATEINFO = 'aupdateInfo'
+export const UPDATENAME = 'updateName'
+export const AUPDATENAME = 'aupdateName'

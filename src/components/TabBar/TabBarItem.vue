@@ -1,6 +1,6 @@
 <template>
-  <div class="tab-bar-item" :style="active">
-    <div @click="itemClick">
+  <div class="tab-bar-item" :style="active" @click="itemClick">
+    <div>
       <slot></slot>
     </div>
   </div>

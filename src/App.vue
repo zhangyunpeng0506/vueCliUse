@@ -95,6 +95,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
+  //scoped是H5的新属性，如果使用该属性，则样式仅仅应用到style元素的父元素及其子元素
+  
   @import'./assets/css/base.less';  //@import后不能有空格
 
   .router-link-active{
