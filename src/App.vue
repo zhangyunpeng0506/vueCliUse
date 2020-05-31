@@ -20,7 +20,7 @@
       <tab-bar-item path="/home">首页</tab-bar-item>
       <!-- <tab-bar-item path="/economics">财经</tab-bar-item>
       <tab-bar-item path="/sports">体育</tab-bar-item> -->
-      <tab-bar-item path="/about">关于</tab-bar-item>
+      <tab-bar-item :path="{path:'/about',query:{name:'zyp'}}">关于</tab-bar-item>
       <tab-bar-item path="/user">我的</tab-bar-item>
       <tab-bar-item path="/profile">档案</tab-bar-item>
     </tab-bar>
@@ -64,7 +64,13 @@ export default {
     },
     aboutClick(){
       // this.$router.push('/about')
-      this.$router.replace('/about')
+      // this.$router.replace('/about')
+      this.$router.push({
+        path: '/about',
+        query: {
+          name:'zyp'
+        }
+      })
     }
   },
   beforeCreate(){

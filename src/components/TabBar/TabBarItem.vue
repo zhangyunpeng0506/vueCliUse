@@ -11,8 +11,10 @@ export default {
   name:'TabBarItem',
   props:{
     path:{
-      type:String,
-      default:''
+      type: String | Object,
+      default() {
+        return '' || {}
+      }
     },
     activeColor:{
       type:String,
@@ -21,7 +23,17 @@ export default {
   },
   computed:{
     active(){
-      return this.$route.path.includes(this.path)?{color:this.activeColor,'border-bottom':`solid 1px ${this.activeColor}`}:{}
+      /* js判断数据类型：
+       * 方式一：typeof //typeof 1
+       * 方式二：instanceof //(1).instanceof Number
+       * 方式三：constructor  //(1).constructor===Number
+       * 方式四：Object.prototype.toString  //Object.prototype.toString.call(1)
+       */
+      if(Object.prototype.toString.call(this.path).includes('Object')){        
+        return this.$route.path.includes(this.path.path)?{color:this.activeColor,'border-bottom':`solid 1px ${this.activeColor}`}:{}
+      }else{
+        return this.$route.path.includes(this.path)?{color:this.activeColor,'border-bottom':`solid 1px ${this.activeColor}`}:{}
+      }
     }
   },
   methods:{

@@ -60,6 +60,13 @@ const routes = [
     meta:{
       title:'档案'
     }
+  },
+  {
+    path: '*',  //用通配符路由匹配所有路由（放在最后用于匹配404页面）
+    component: () => import('@/components/error/404'),
+    meta: {
+      title: '404'
+    }
   }
 ]
 const router = new VueRouter({
